@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PassGuard — Password Security Analyzer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>🛡️ PassGuard</h1>
+    <p class="subtitle">Type a password below for a full security breakdown — nothing leaves your browser except an anonymous summary if you ask the AI to explain the result.</p>
+  </header>
+
+  <div class="privacy-row">
+    <label class="switch">
+      <input type="checkbox" id="privacyMode">
+      <span class="slider"></span>
+    </label>
+    <span>Privacy mode — disable AI explanations entirely</span>
+  </div>
+
+  <div class="card">
+    <div class="input-row">
+      <input type="password" id="pw" placeholder="Type a password to test" autocomplete="off">
+      <button class="toggle-visibility" id="toggleBtn" type="button">Show</button>
+    </div>
+
+    <div class="meter-track"><div class="meter-fill" id="meterFill"></div></div>
+    <div class="meter-label">
+      <span>Score: <strong id="scoreLabel">0</strong>/100</span>
+      <span class="status" id="statusLabel">—</span>
+    </div>
+
+    <div class="breakdown" id="breakdown"></div>
+
+    <div class="checks" id="checks"></div>
+
+    <div class="attack-grid" id="attackGrid" style="display:none;"></div>
+
+    <div class="ai-section">
+      <button id="explainBtn" class="explain-btn" type="button" disabled>🤖 Ask AI to explain this result</button>
+      <p id="explainOutput" class="explain-output"></p>
+    </div>
+
+    <div class="weaknesses">
+      <h2>Weaknesses found</h2>
+      <div id="weaknessList"><p class="empty">Start typing to see feedback.</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="section-title">🧪 What-if simulator</h2>
+    <p class="section-hint">Try an improved version of your password and compare the two scores side by side.</p>
+    <input type="text" id="whatIfInput" placeholder="Type a modified version to compare" autocomplete="off">
+    <div class="compare-grid" id="compareGrid" style="display:none;"></div>
+  </div>
+
+  <div class="card">
+    <h2 class="section-title">🎲 Strong passphrase generator</h2>
+    <button id="generateBtn" class="generate-btn" type="button">Generate a strong passphrase</button>
+    <div class="passphrase-output" id="passphraseOutput"></div>
+  </div>
+
+  <div class="card">
+    <h2 class="section-title">🎮 Guess the strength</h2>
+    <p class="section-hint">Is this password weak, fair, good, or strong? Test your instincts.</p>
+    <div class="game-box" id="gameBox"></div>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
